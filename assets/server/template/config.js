@@ -16,6 +16,7 @@ const server = {
     interceptors: [],
     services: {
         // referrenced service
+        //utils,
     },
     configs: {
         // serviceName: {}
@@ -26,6 +27,7 @@ function configServices(server) {
     var { services, configs } = server;
     Object.keys(services).filter(k => !!services[k].config).forEach(k => {
         let curCfg = Object.assign({ server, services }, configs["*"], configs[k]);
+        if (services.utils && services.utils.api.env) curCfg = services.utils.api.env(curCfg);
         services[k].config(curCfg);
     })
 }

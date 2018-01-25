@@ -42,6 +42,10 @@ function createServer(serverName, dest) {
 
             await runCmd(which.sync(npm), ['install', 'mk-server', '--save'], dest)
 
+            await runCmd(which.sync(npm), ['mk', 'service', 'service/helloworld'], dest)
+
+            await runCmd(which.sync(npm), ['mk', 'compile', 'server'], dest)
+
             console.log("OK!")
 
         }).resume();

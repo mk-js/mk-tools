@@ -14,6 +14,7 @@ const server = {
     port: 8000,
     apiRootUrl: "/v1",
     interceptors: [],
+    website: __dirname + "/html/",
     services: {
         // referrenced service
         //utils,

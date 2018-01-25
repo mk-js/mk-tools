@@ -6,13 +6,18 @@ import template from 'art-template'
 
 const { join, basename } = path
 
-export default function compile() {
-	internal()
+export default function compile(rootPath) {
+	internal(rootPath)
 }
 
-function internal() {
-	const basePath = process.cwd(),
-		apps = []
+function internal(rootPath = '') {
+	let basePath = process.cwd(),
+		apps = [] 
+	if(rootPath.indexOf('/') == 0){
+		basePath = rootPath
+	}else{
+		basePath = path.join(basePath, rootPath)
+	} 
 
 	//获取文件数组
 	const findApps = (absoultePath) => {

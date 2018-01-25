@@ -5,6 +5,7 @@ import path from 'path'
 import which from 'which'
 
 import { findNpm, runCmd } from '../utils'
+import compileServer from '../compile/compileServer'
 
 const { join, basename } = path
 
@@ -40,13 +41,11 @@ function createServer(serverName, dest) {
 
             var npm = findNpm()
 
-            await runCmd(which.sync(npm), ['install', 'mk-server', '--save'], dest)
+            await runCmd(which.sync(npm), ['install', 'mk-server', '--save'], dest) 
+ 
+            //console.log("OK!")
 
-            await runCmd(which.sync(npm), ['mk', 'service', 'service/helloworld'], dest)
-
-            await runCmd(which.sync(npm), ['mk', 'compile', 'server'], dest)
-
-            console.log("OK!")
+            return compileServer(serverName)
 
         }).resume();
 }

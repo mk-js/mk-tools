@@ -63,8 +63,8 @@ program
 	.command('server')
 	.option("-i, --init", "init")
 	.action(function(...args){
-		if (typeof args[0] === 'string')
-			server(...args)
+		if (typeof args[0] === 'string') 
+			server(...args)   
 		else
 			server('server-demo', ...args)
 	})
